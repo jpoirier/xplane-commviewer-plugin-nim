@@ -1,4 +1,5 @@
 #### CommViewer
+
 Draws a small, mouse moveable/clickable, text box in the upper left hand corner
 of the simulator screen. The output shows PilotEdge Connection, PTT (Push-To-Talk),
 TX/RX, Com1, and Com2 status.
@@ -31,19 +32,28 @@ PTT: OFF   COM1: 1   COM2: 1
 ![Alt text](./images/CommViewer.png "X-Plane screenshot")
 
 
-#### Building Dependencies
+#### Build Dependencies
+
 - The [Nim Language compiler](http://nim-lang.org/download.html).
 - [XPLM-Nim package](https://github.com/jpoirier/XPLM-Nim). You
 can fetch the package using the Nimble tool, if you have it installed
 (Nimble install XPLM-Nim), or clone the repo and set the Nim compiler's
-path argument to point to XPLM-Nim's src folder. E.g.,
+path argument to point to XPLM-Nim's src folder. E.g., --p:~/downloads/XPLM-Nim/src
 
-`$ nim c --path: ~/downloads/XPLM-Nim/src -d:release -d:useRealtimeGC -o:CommViewer.xpl CommViewer.nim`
 
-Move the ViewerComm.xpl plugin to your X-Plane 10/Resources/plugins folder.
+#### Building The Plugin
+Issue one of the following commands in a shell window:
+
+`$ nim c -d:release -d:useRealtimeGC -o:CommViewer.xpl CommViewer.nim`
+
+`$ nim c -p:~/downloads/XPLM-Nim/src -d:release -d:useRealtimeGC -o:CommViewer.xpl CommViewer.nim`
+
+
+Then move the ViewerComm.xpl plugin to your X-Plane 10/Resources/plugins folder.
 
 
 #### TODO
+
 - add hotkey handling to hide the window
 - add comm audio volume control
 
@@ -52,4 +62,5 @@ Move the ViewerComm.xpl plugin to your X-Plane 10/Resources/plugins folder.
 
 
 #### VERSIONS
+
 - 1.0 Initial working build
