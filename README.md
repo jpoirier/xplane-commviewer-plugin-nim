@@ -44,9 +44,9 @@ path argument to point to XPLM-Nim's src folder. E.g., --p:~/downloads/XPLM-Nim/
 #### Building The Plugin
 Issue one of the following commands in a shell window:
 
-`$ nim c -d:release -d:useRealtimeGC -o:CommViewer.xpl CommViewer.nim`
+`$ nim c -o:CommViewer.xpl CommViewer.nim`
 
-`$ nim c -p:~/downloads/XPLM-Nim/src -d:release -d:useRealtimeGC -o:CommViewer.xpl CommViewer.nim`
+`$ nim c -p:~/downloads/XPLM-Nim/src -o:CommViewer.xpl CommViewer.nim`
 
 
 Then move the ViewerComm.xpl plugin to your X-Plane 10/Resources/plugins folder.
