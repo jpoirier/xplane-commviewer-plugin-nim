@@ -38,7 +38,7 @@ can fetch the package using the Nimble tool, if you have it installed
 (Nimble install XPLM-Nim), or clone the repo and set the Nim compiler's
 path argument to point to XPLM-Nim's src folder. E.g.,
 
-$ nim c --path: ~/downloads/XPLM-Nim/src -d:release -d:useRealtimeGC -o:CommViewer.xpl CommViewer.nim
+`$ nim c --path: ~/downloads/XPLM-Nim/src -d:release -d:useRealtimeGC -o:CommViewer.xpl CommViewer.nim`
 
 Move the ViewerComm.xpl plugin to your X-Plane 10/Resources/plugins folder.
 
