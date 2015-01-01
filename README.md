@@ -52,15 +52,15 @@ Issue one of the following commands in a shell window:
 Then move the ViewerComm.xpl plugin to your X-Plane 10/Resources/plugins folder.
 
 
-#### TODO
+#### Todo
 
 - add hotkey handling to hide the window
 - add comm audio volume control
 
 
-#### MISC/NOTES
+#### Misc/Notes
 
 
-#### VERSIONS
+#### Versions
 
 - 1.0 Initial working build
