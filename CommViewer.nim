@@ -218,6 +218,8 @@ proc FlightLoopCallback(inElapsedSinceLastCall, inElapsedTimeSinceLastFlightLoop
     return 1.0
 
 proc XPluginStart(outName, outSig, outDesc: ptr cstring): int {.exportc: "XPluginStart", dynlib.} =
+    setupForeignThreadGc()
+
     var name: cstring = "CommViewer"
     var sig: cstring = "jdp.comm.viewer"
     var desc: cstring = "CommViewer Plugin."
