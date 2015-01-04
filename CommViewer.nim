@@ -83,13 +83,14 @@ proc CommandHandler(inCommand: XPLMCommandRef, inPhase: XPLMCommandPhase, inRefc
 # template `C.()`(x: expr): expr = cast[ptr type(x[0])](addr x)
 # template `CPtr.`(x: expr): expr = cast[ptr type(x[0])](addr x)
 # template `:-/`(x: expr): expr = cast[ptr type(x[0])](addr x)
-# RGB: White [1.0, 1.0, 1.0], Lime Green [0.0, 1.0, 0.0]
-var viewer_color: array[0..2, float32] = [float32(0.0), float32(1.0), float32(0.0)]
 proc DrawWindowCallback(inWindowID: XPLMWindowID, inRefcon: pointer) {.exportc: "DrawWindowCallback", dynlib.} =
-    var left, right, top, bottom: int
+    # RGB: White [1.0, 1.0, 1.0], Lime Green [0.0, 1.0, 0.0]
+    var viewer_color {.global.} = [float32(0.0), float32(1.0), float32(0.0)]
 
     if inWindowID != gCommWindow:
         return
+
+    var left, right, top, bottom: int
 
     # XXX: are inWindowIDs our XPLMCreateWindow return pointers
     XPLMGetWindowGeometry(inWindowID, addr(left), addr(top), addr(right), addr(bottom))
@@ -136,14 +137,14 @@ proc DrawWindowCallback(inWindowID: XPLMWindowID, inRefcon: pointer) {.exportc: 
                        top-20,
                        str1,
                        cast[ptr int](0),
-                       cast[XPLMFontID](xplmFont_Basic))
+                       xplmFont_Basic)
 
         XPLMDrawString(addr(viewer_color[0]),
                        left+4,
                        top-40,
                        str2,
                        cast[ptr int](0),
-                       cast[XPLMFontID](xplmFont_Basic))
+                       xplmFont_Basic)
     else: discard
 
 proc HandleKeyCallback(inWindowID: XPLMWindowID,
@@ -155,9 +156,11 @@ proc HandleKeyCallback(inWindowID: XPLMWindowID,
     if inWindowID != gCommWindow:
         return
 
-var com_changed: int = COMMS_UNCHANGED
-var MouseDownX, MouseDownY: int
 proc HandleMouseCallback(inWindowID: XPLMWindowID, x, y: int, inMouse: XPLMMouseStatus, inRefcon: pointer): int {.exportc: "HandleMouseCallback", dynlib.} =
+    var MouseDownX {.global.}: int = 0
+    var MouseDownY {.global.}: int = 0
+    var com_changed {.global.}: int = COMMS_UNCHANGED
+
     if inWindowID != gCommWindow:
         return IGNORED_EVENT
 
@@ -218,6 +221,8 @@ proc FlightLoopCallback(inElapsedSinceLastCall, inElapsedTimeSinceLastFlightLoop
     return 1.0
 
 proc XPluginStart(outName, outSig, outDesc: ptr cstring): int {.exportc: "XPluginStart", dynlib.} =
+    # We're assuming all our cllbacks happen in the same thread.
+    # TODO: calrify the callback threading.
     setupForeignThreadGc()
 
     var name: cstring = "CommViewer"

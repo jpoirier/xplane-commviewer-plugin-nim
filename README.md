@@ -34,7 +34,7 @@ PTT: OFF   COM1: 1   COM2: 1
 
 #### Build Dependencies
 
-- The [Nim Language compiler](http://nim-lang.org/download.html).
+The [Nim Language compiler](http://nim-lang.org/download.html).
 - [XPLM-Nim package](https://github.com/jpoirier/XPLM-Nim). You
 can fetch the package using the Nimble tool, if you have it installed
 (Nimble install XPLM-Nim), or clone the repo and set the Nim compiler's
@@ -42,14 +42,17 @@ path argument to point to XPLM-Nim's src folder. E.g., --p:~/downloads/XPLM-Nim/
 
 
 #### Building The Plugin
-Issue one of the following commands in a shell window:
 
-`$ nim c -o:CommViewer.xpl CommViewer.nim`
+If you installed the XPLM-Nim package using Nimble:
 
-`$ nim c -p:~/downloads/XPLM-Nim/src -o:CommViewer.xpl CommViewer.nim`
+	`$ nim c -o:CommViewer.xpl CommViewer.nim`
+
+If you cloned the XPLM-Nim package repo locally, e.g. in your downloads folder:
+
+	`$ nim c -p:~/downloads/XPLM-Nim/src -o:CommViewer.xpl CommViewer.nim`
 
 
-Then move the ViewerComm.xpl plugin to your X-Plane 10/Resources/plugins folder.
+Now move the ViewerComm.xpl plugin to your X-Plane 10/Resources/plugins folder.
 
 
 #### Todo
