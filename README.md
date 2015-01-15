@@ -65,5 +65,5 @@ Now move the ViewerComm.xpl plugin to your X-Plane 10/Resources/plugins folder.
 
 
 #### Versions
-
+- 1.1 More idiomatic Nim code and readme updates
 - 1.0 Initial working build
